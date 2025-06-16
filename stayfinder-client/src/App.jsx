@@ -1,11 +1,46 @@
+import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import Home from "./pages/Home.jsx";
+import ListingDetail from "./pages/ListingDetail.jsx";
+import Bookings from "./pages/Bookings.jsx";
+import { useEffect } from "react";
+import axios from "axios";
+import { useAuthStore } from "./store/useUserStore.js";
+import PrivateRoute from "./components/ProtectedRoute.jsx";
+import PublicRoute from "./components/PublicRoute.jsx";
 
 function App() {
+  const { setUser } = useAuthStore();
+
+  useEffect(() => {
+  axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/me`, { withCredentials: true })
+    .then(res => setUser(res.data.user))
+    .catch(() => setUser(null));
+  }, []);
+
 
   return (
-    <div>
-      <h1 className='text-red-500'>helo</h1>
-    </div>
-  )
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={
+        <PublicRoute>
+          <Login />
+        </PublicRoute>
+      } />
+      <Route path="/register" element={
+        <PublicRoute>
+          <Register />
+        </PublicRoute>
+      } />
+      <Route path="/listings/:id" element={<PrivateRoute>
+        <ListingDetail />
+      </PrivateRoute>} />
+      <Route path="/bookings" element={<PrivateRoute>
+        <Bookings />
+      </PrivateRoute>} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
