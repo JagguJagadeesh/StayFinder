@@ -24,12 +24,16 @@ const signup = async (req,res) => {
             role
         })
         res.status(200)
-        .cookie('token', genrateToken(createdUser._id), {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'strict',
-        maxAge: 604800000
-        }).json({message: `Welcome ${createdUser.name} to StayFinder`,user: createdUser});
+          .cookie('token', genrateToken(createdUser._id), {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'None', 
+            maxAge: 2 * 24 * 60 * 60 * 1000
+          })
+          .json({
+            message: `Welcome back ${createdUser.name}`,
+            user: createdUser,
+          });
     } catch (e) {
         console.log("at signup",e);
         res.status(300).json({error:e})
@@ -46,15 +50,16 @@ const signin = async (req,res) => {
         if(!ismathc) return res.status(401).json({ message: 'Invalid Password...' });
 
         res.status(200)
-        .cookie('token', genrateToken(checkUser._id), {
-        httpOnly: true,
-        secure: true,
-        sameSite: 'strict',
-        maxAge: 604800000
-        }).json({
-                message: `Welcome back ${checkUser.name}`,
-                user: checkUser,
-            });
+          .cookie('token', genrateToken(checkUser._id), {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'None', 
+            maxAge: 2 * 24 * 60 * 60 * 1000
+          })
+          .json({
+            message: `Welcome back ${checkUser.name}`,
+            user: checkUser,
+          });
     } catch (e) {
         console.log("at signup",e);
         res.status(300).json({error:e})
