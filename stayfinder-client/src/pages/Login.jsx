@@ -39,7 +39,6 @@ export default function Login() {
       const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/signin`,data,{
         withCredentials: true
       });
-      console.log(res.data.user)
       toast.success(res.data.message)
       setUser(res.data.user);
       navigate('/');

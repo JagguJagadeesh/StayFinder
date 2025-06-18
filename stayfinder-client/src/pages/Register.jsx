@@ -30,7 +30,6 @@ export default function Signup() {
       const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/signup`,data,{
         withCredentials: true
       });
-      // console.log(res)
       setUser(res.data.user)
       navigate('/')
       window.location.reload();

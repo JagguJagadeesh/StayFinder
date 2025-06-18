@@ -10,7 +10,6 @@ export default function Button({ children, variant = 'primary', onClick, type = 
   return (
     <motion.button
       type={type}
-    //   whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.97 }}
       className={clsx(baseStyles, variants[variant])}
       onClick={onClick}

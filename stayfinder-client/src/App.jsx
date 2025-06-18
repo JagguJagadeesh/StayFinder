@@ -9,6 +9,7 @@ import axios from "axios";
 import { useAuthStore } from "./store/useUserStore.js";
 import PrivateRoute from "./components/ProtectedRoute.jsx";
 import PublicRoute from "./components/PublicRoute.jsx";
+import Profile from "./pages/Profile.jsx";
 
 function App() {
   const { setUser } = useAuthStore();
@@ -33,11 +34,14 @@ function App() {
           <Register />
         </PublicRoute>
       } />
-      <Route path="/listings/:id" element={<PrivateRoute>
+      <Route path="/listings/list/:id" element={<PrivateRoute>
         <ListingDetail />
       </PrivateRoute>} />
       <Route path="/bookings" element={<PrivateRoute>
         <Bookings />
+      </PrivateRoute>} />
+      <Route path="/profile" element={<PrivateRoute>
+        <Profile />
       </PrivateRoute>} />
     </Routes>
   );

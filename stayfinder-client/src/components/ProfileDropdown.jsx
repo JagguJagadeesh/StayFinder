@@ -34,7 +34,7 @@ function ProfileDropdown() {
           </div>
           <div className="py-1">
             <Link
-              to="#"
+              to="/profile"
               className="block px-4 py-2 text-sm text-pink-700 hover:bg-pink-200"
             >
               My Profile

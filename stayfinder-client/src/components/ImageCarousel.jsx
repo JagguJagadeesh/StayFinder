@@ -32,7 +32,6 @@ function ImageCarousel({ images = [] }) {
         </AnimatePresence>
       </div>
 
-      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         className="absolute cursor-pointer top-1/2 left-2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-black/60 rounded-full p-2"
@@ -46,7 +45,6 @@ function ImageCarousel({ images = [] }) {
         <FaCircleArrowRight className="text-2xl" />
       </button>
 
-      {/* Dot Indicators */}
       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
         {images.map((_, index) => (
           <div
