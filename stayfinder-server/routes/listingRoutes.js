@@ -12,6 +12,6 @@ const listingRoute = express.Router();
 listingRoute.get('/search', getSearch);               
 listingRoute.get('/list/:id', getListingById);        
 listingRoute.get('/', getAllListings);                
-listingRoute.post('/', protect, createListing);       
+listingRoute.post('/addlisting', protect, createListing);       
 
 export { listingRoute };

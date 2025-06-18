@@ -10,6 +10,7 @@ import { useAuthStore } from "./store/useUserStore.js";
 import PrivateRoute from "./components/ProtectedRoute.jsx";
 import PublicRoute from "./components/PublicRoute.jsx";
 import Profile from "./pages/Profile.jsx";
+import AddListing from "./pages/AddListing.jsx";
 
 function App() {
   const { setUser } = useAuthStore();
@@ -42,6 +43,9 @@ function App() {
       </PrivateRoute>} />
       <Route path="/profile" element={<PrivateRoute>
         <Profile />
+      </PrivateRoute>} />
+      <Route path="/addlisting" element={<PrivateRoute>
+        <AddListing />
       </PrivateRoute>} />
     </Routes>
   );

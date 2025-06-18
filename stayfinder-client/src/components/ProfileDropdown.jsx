@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CiUser } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/useUserStore';
+import { CiSquarePlus } from 'react-icons/ci';
 
 function ProfileDropdown() {
   const [open, setOpen] = useState(false);
@@ -35,22 +36,24 @@ function ProfileDropdown() {
           <div className="py-1">
             <Link
               to="/profile"
-              className="block px-4 py-2 text-sm text-pink-700 hover:bg-pink-200"
+              className="block px-4 py-2 hover:bg-pink-300"
             >
               My Profile
             </Link>
             <Link
               to="/bookings"
-              className="block px-4 py-2 text-sm text-pink-700 hover:bg-pink-200"
+              className="block px-4 py-2 hover:bg-pink-300"
             >
               My Bookings
             </Link>
+            {user.role === 'guest' ?
+            '':
             <Link
-              to="#"
-              className="block px-4 py-2 text-sm text-pink-700 hover:bg-pink-200"
+              to="/addlisting"
+              className="px-4 py-2 flex items-center gap-1 text-black  hover:bg-pink-300"
             >
-              Wishlist
-            </Link>
+              <span><CiSquarePlus className='size-6'/></span> Add listing
+            </Link>}
           </div>
         </div>
       )}
